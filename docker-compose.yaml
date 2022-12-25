@@ -1,0 +1,17 @@
+services: 
+ promtail:
+    image: grafana/promtail:latest
+    container_name: promtail
+    restart: always
+    ports:
+      - 9080:9080
+    volumes:
+      - type: bind
+        source: "./promtail/config.yml"
+        target: "/etc/promtail/config.yml"
+        read_only: true
+      - type: bind
+        source: "/var/log/"
+        target: "/promtail/log/"
+        read_only: true
+    command: -config.file=/etc/promtail/config.yml
