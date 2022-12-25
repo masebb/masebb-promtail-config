@@ -14,4 +14,7 @@ services:
         source: "/var/log/"
         target: "/promtail/log/"
         read_only: true
+      - type: bind
+        source: "./promtail/positions.yaml"
+        target: "/tmp/positions.yaml"
     command: -config.file=/etc/promtail/config.yml
